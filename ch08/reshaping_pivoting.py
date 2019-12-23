@@ -59,3 +59,28 @@ ldata = data.stack().reset_index().rename(columns={0: 'value'})
 ldata[:10]
 
 # %%
+df = pd.DataFrame({'key': ['foo', 'bar', 'baz'],
+                   'A': [1, 2, 3],
+                   'B': [4, 5, 6],
+                   'C': [7, 8, 9]})
+df                   
+
+# %%
+melted = pd.melt(df, ['key'])
+melted
+
+# %%
+reshaped = melted.pivot('key', 'variable', 'value')
+reshaped
+
+# %%
+reshaped.reset_index()
+
+# %%
+pd.melt(df, id_vars=['key'], value_vars=['A', 'B'])
+
+# %%
+pd.melt(df, value_vars=['A', 'B', 'C'])
+
+# %%
+pd.melt(df, value_vars=['key', 'A', 'B'])
